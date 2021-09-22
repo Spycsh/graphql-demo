@@ -1,0 +1,22 @@
+type Query {
+    employeeById(id: ID): Employee
+
+    # a list of employees
+    allEmployees:[Employee]!
+}
+
+type Employee{
+    id: ID
+    firstName: String
+    lastName: String
+    salary: Float
+    address: Address
+}
+
+type Address {
+    houseNo: ID
+    street: String
+    city: String
+    state: String
+    country: String
+}

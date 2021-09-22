@@ -70,6 +70,15 @@ public class GraphQLDataFetchers {
         return dataFetchingEnvironment -> employeeList;
     }
 
-
-
+    public DataFetcher getAddressByEmployeeDataFetcher(){
+        return dataFetchingEnvironment -> {
+            Map<String, String> employee = dataFetchingEnvironment.getSource();
+            String addressId = employee.get("addressId");
+            return addresses
+                    .stream()
+                    .filter(address -> address.get("houseNo").equals(addressId))    // find the address with the same id to the requested employee's address
+                    .findFirst()
+                    .orElse(null);
+        };
+    }
 }

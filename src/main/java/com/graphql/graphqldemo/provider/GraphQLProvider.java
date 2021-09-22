@@ -51,6 +51,8 @@ public class GraphQLProvider {
                         .dataFetcher("employeeById", graphQLDataFetchers.getEmployeeByIdDataFetcher()))
                 .type(newTypeWiring("Query")
                         .dataFetcher("allEmployees", graphQLDataFetchers.getAllEmployees()))
+                .type(newTypeWiring("Employee")
+                        .dataFetcher("address", graphQLDataFetchers.getAddressByEmployeeDataFetcher()))
                 .build();
     }
 

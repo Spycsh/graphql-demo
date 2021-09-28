@@ -98,27 +98,31 @@
 
         // This example expects a GraphQL server at the path /graphql.
         // Change this to point wherever you host your GraphQL server.
-        return fetch('/graphql', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(graphQLParams),
-            credentials: 'include',
-        }).then(function (response) {
 
-            let b = Date.now();
-            console.log( "query used time in millisec: "+(b-a));
+        for(var i=0; i< 1000; i++){
+            var res = fetch('/graphql', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(graphQLParams),
+                credentials: 'include',
+            }).then(function (response) {
+                return response.text();
+            }).then(function (responseBody) {
+                try {
+                    return JSON.parse(responseBody);
+                } catch (error) {
+                    return responseBody;
+                }
+            });
+        }
+        let b = Date.now();
+        console.log("query used time in millisec: " + (b - a));
 
-            return response.text();
-        }).then(function (responseBody) {
-            try {
-                return JSON.parse(responseBody);
-            } catch (error) {
-                return responseBody;
-            }
-        });
+
+        return res;
     }
 
     // Render <GraphiQL /> into the body.

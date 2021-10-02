@@ -19,3 +19,16 @@ response time in milliseconds are printed in console.
 
 localhost:8091/listId: return id of all employee.
 The response time is also printed in console.
+
+
+# data 
+
+gRPC - all employees
+![img_1.png](img_1.png)
+
+GraphQL - all employees
+
+![img_2.png](img_2.png)
+
+GraphQL - all employee id
+![img_3.png](img_3.png)
